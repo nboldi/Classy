@@ -6,7 +6,7 @@ module Classy.Prelude (
   module Classy.Prelude
 ) where
 
-import Prelude (id, const, flip, (.), String, Ord, Show, Read) 
+import Prelude (id, const, flip, String, Ord, Show, Read) 
 import Data.Maybe (Maybe(..), fromJust)
 import Classy.Bool
   
@@ -32,6 +32,19 @@ class ( Function f, Function (FunInv f)
       , FunRes f ~ FunArg (FunInv f) ) => Bijection f where
   type FunInv f :: *
   inverse :: f -> FunInv f
+  
+-- | Transformations that can be concatenated
+class ( Function f, Function g
+      , FunRes f ~ FunArg g
+      , FunArg f ~ FunArg (FunConc f g)
+      , FunRes g ~ FunRes (FunConc f g)) 
+      => Composable f g where
+  type FunConc f g :: *
+  (.) :: g -> f -> FunConc f g
+  
+instance Composable (a -> b) (b -> c) where
+  type FunConc (a -> b) (b -> c) = (a -> c)
+  (f . g) x = f (g x)
   
 -- | Something that has a zero element and addition
 -- Monoid laws:
