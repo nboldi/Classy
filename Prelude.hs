@@ -1,18 +1,14 @@
-{-# LANGUAGE NoImplicitPrelude, TypeFamilies #-}
+{-# LANGUAGE NoImplicitPrelude, TypeFamilies, MultiParamTypeClasses, FlexibleInstances, FlexibleContexts #-}
 
-module Classy.Prelude where
+module Classy.Prelude (
+  id, const, flip, (.), String, Ord, Show, Read,
+  Maybe(..),
+  module Classy.Prelude
+) where
 
-import Prelude (id, const, flip, (.), String) 
+import Prelude (id, const, flip, (.), String, Ord, Show, Read) 
 import Data.Maybe (Maybe(..), fromJust)
 import Classy.Bool
-
--- | Something that can be displayed as text
-class Show a where
-  show :: a -> String
-
--- | Something that can be read from a console or textfile
-class Read a where
-  read :: String -> a
   
 -- | Something that can act as a function.
 -- Minimal complete definition: apply or partial
@@ -29,6 +25,14 @@ instance Function (a -> b) where
   type FunRes (a -> b) = b
   apply = id
 
+-- | Something that can be inverted
+-- The type of the inverse can be different from the type of the function
+class ( Function f, Function (FunInv f)
+      , FunArg f ~ FunRes (FunInv f)
+      , FunRes f ~ FunArg (FunInv f) ) => Bijection f where
+  type FunInv f :: *
+  inverse :: f -> FunInv f
+  
 -- | Something that has a zero element and addition
 -- Monoid laws:
 --   empty ++ b = b
@@ -38,6 +42,10 @@ instance Function (a -> b) where
 class Monoid m where
   empty :: m
   (++) :: m -> m -> m
+
+  
+class Num m where
+  
   
 -- | Something that has a structure that can be mapped.
 -- Functor laws:
