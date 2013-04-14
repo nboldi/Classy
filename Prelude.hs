@@ -1,14 +1,13 @@
 {-# LANGUAGE NoImplicitPrelude, TypeFamilies, MultiParamTypeClasses, FlexibleInstances, FlexibleContexts #-}
 
 module Classy.Prelude (
-  id, const, flip, (.), String, Ord, Show, Read,
+  id, const, flip, String, Ord, Show, Read,
   Maybe(..),
   module Classy.Prelude
 ) where
 
 import Prelude (id, const, flip, String, Ord, Show, Read) 
 import Data.Maybe (Maybe(..), fromJust)
-import Classy.Bool
   
 -- | Something that can act as a function.
 -- Minimal complete definition: apply or partial
@@ -107,3 +106,8 @@ class (MonadZero mo) => MonadOr mo where
  
 class (Monad m) => MonadFail m where
   fail :: (Show s) => s -> m a
+
+class GenericClass c where
+  type DefaultImpl c :: *
+  generalize :: DefaultImpl c -> c
+  

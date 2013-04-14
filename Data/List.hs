@@ -8,8 +8,12 @@ import qualified Prelude as Base
 
 instance Traversable [a] where
   type ElemType [a] = a
-  first = Base.head
-  rest = Base.tail
+  first [] = error "Calling `first` on empty list."
+  first (x:_) = x
+  rest [] = error "Calling `rest` on empty list."
+  rest (_:xs) = xs
+  null [] = True
+  null _ = False
   
 instance Functor [] where
   map f [] = []
