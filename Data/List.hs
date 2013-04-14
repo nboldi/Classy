@@ -1,10 +1,11 @@
 {-# LANGUAGE NoImplicitPrelude, TypeFamilies, MultiParamTypeClasses, FlexibleInstances #-}
-
 module Classy.Data.List where
 
-import Classy.Prelude
+import Classy.Base
 import Classy.Data.Traversable
-import qualified Prelude as Base
+import Classy.Data.Boolean
+import Classy.Control.Function
+import Classy.Control.Monad
 
 instance Traversable [a] where
   type ElemType [a] = a
@@ -12,8 +13,8 @@ instance Traversable [a] where
   first (x:_) = x
   rest [] = error "Calling `rest` on empty list."
   rest (_:xs) = xs
-  null [] = True
-  null _ = False
+  null [] = true
+  null _ = false
   
 instance Functor [] where
   map f [] = []

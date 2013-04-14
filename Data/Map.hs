@@ -1,12 +1,13 @@
 {-# LANGUAGE NoImplicitPrelude, MultiParamTypeClasses, TypeFamilies, FlexibleInstances #-}
-
 module Classy.Data.Map where
 
-import Classy.Prelude
+import Classy.Base
 import Classy.Data.Associative
 import Classy.Data.Traversable
 import Classy.Data.Tuple
 import Classy.Data.List
+import Classy.Control.Function
+import Classy.Control.Monad
 import qualified Data.Map as P
 
 class (Traversable g, Associative g) => Map g where

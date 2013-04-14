@@ -1,9 +1,9 @@
 {-# LANGUAGE NoImplicitPrelude, FlexibleInstances, UndecidableInstances, TypeFamilies #-}
 module Classy.Data.Boolean 
-( Boolean, Bool(..)
+( Boolean(..), Bool(..)
 ) where
 
-import Classy.Prelude
+import Classy.Base
 
 -- | Boolean laws:
 --   An instance of the Boolean class must follow the rules of

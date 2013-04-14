@@ -1,8 +1,8 @@
 {-# LANGUAGE NoImplicitPrelude, TypeFamilies, FlexibleInstances, UndecidableInstances #-}
-
 module Classy.Data.Associative where
   
-import Classy.Prelude
+import Classy.Control.Function
+import Classy.Data.Maybe
 
 class (Function g, AssocKey g ~ FunArg g, AssocValue g ~ FunRes g) => Associative g where
   type AssocKey g :: *
