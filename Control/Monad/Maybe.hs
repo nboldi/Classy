@@ -1,10 +1,9 @@
 {-# LANGUAGE NoImplicitPrelude #-}
-module Classy.Data.Maybe.Instances () where
+module Classy.Control.Monad.Maybe () where
 
 import Classy.Data.Maybe
+import Classy.Data.Classes
 import Classy.Control.Monad
-import Classy.Control.Monad.Zero
-import Classy.Control.Monad.Or
 
 instance Functor Maybe where
   map _ Nothing = Nothing
@@ -12,6 +11,8 @@ instance Functor Maybe where
   
 instance Applicative Maybe where
   return = Just
+  Just f <*> Just a = Just (f a)
+  _ <*> _ = Nothing
 
 instance Monad Maybe where
   Nothing >>= _ = Nothing
@@ -19,7 +20,14 @@ instance Monad Maybe where
   
 instance MonadZero Maybe where
   zero = Nothing
-  
+
+-- <+> is right-biased
+instance MonadPlus Maybe where
+  _ <+> Just a = Just a
+  m <+> Nothing = m
+
+-- `orElse` is left-biased
 instance MonadOr Maybe where
   Nothing `orElse` m = m
   m `orElse` _ = m
+

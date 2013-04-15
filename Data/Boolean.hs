@@ -1,13 +1,14 @@
 {-# LANGUAGE NoImplicitPrelude, FlexibleInstances, UndecidableInstances, TypeFamilies #-}
 module Classy.Data.Boolean 
-( Boolean(..), Bool(..)
+( Boolean(..), IfBoolean(..), Bool(..)
 ) where
 
+import Prelude as Base
 import Classy.Base
 
 -- | Boolean laws:
---   An instance of the Boolean class must follow the rules of
---   monotone boolean algebra (https://en.wikipedia.org/wiki/Boolean_algebra)
+-- An instance of the Boolean class must follow the rules of
+-- monotone boolean algebra (<https://en.wikipedia.org/wiki/Boolean_algebra>)
 class Boolean b where
   true :: b
   false :: b
@@ -15,12 +16,13 @@ class Boolean b where
   (&&) :: b -> b -> b  
   (||) :: b -> b -> b
   
-class Selector b where
+class Boolean b => IfBoolean b where
   if' :: b -> a -> a -> a
+  if' b x y = if toBool b then x else y
+  toBool :: b -> Base.Bool
+  toBool b = if' b Base.True Base.False
 
-data Bool = True | False
-
-instance Boolean Bool where
+instance Boolean Base.Bool where
   true = True
   false = False
   not True = False
@@ -30,9 +32,8 @@ instance Boolean Bool where
   True || _ = True
   False || b = b
   
-instance Selector Bool where
-  if' True a _ = a
-  if' False _ b = b
+instance IfBoolean Base.Bool where
+  toBool = id
   
 -- | Otherwise 
 otherwise :: Boolean b => b

@@ -2,7 +2,7 @@
 module Classy.Base 
 ( module Classy.Base
 , id, const, flip, String, Ord, Show, Read
-, error
+, error, ($)
 ) where
 
 import Prelude

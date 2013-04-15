@@ -4,6 +4,7 @@ module Classy.Data.Map where
 import Classy.Base
 import Classy.Data.Associative
 import Classy.Data.Traversable
+import Classy.Data.Classes
 import Classy.Data.Tuple
 import Classy.Data.List
 import Classy.Control.Function
