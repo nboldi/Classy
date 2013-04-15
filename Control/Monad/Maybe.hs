@@ -1,18 +1,10 @@
 {-# LANGUAGE NoImplicitPrelude #-}
+-- | The maybe monad represents a calculation that may or may not
+-- result in a value.
 module Classy.Control.Monad.Maybe () where
 
 import Classy.Data.Maybe
-import Classy.Data.Classes
 import Classy.Control.Monad
-
-instance Functor Maybe where
-  map _ Nothing = Nothing
-  map f (Just x) = Just (f x)
-  
-instance Applicative Maybe where
-  return = Just
-  Just f <*> Just a = Just (f a)
-  _ <*> _ = Nothing
 
 instance Monad Maybe where
   Nothing >>= _ = Nothing

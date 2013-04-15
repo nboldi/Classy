@@ -1,6 +1,8 @@
 {-# LANGUAGE NoImplicitPrelude, FlexibleInstances, UndecidableInstances, TypeFamilies #-}
 module Classy.Data.Boolean 
-( Boolean(..), IfBoolean(..), Bool(..)
+( Boolean(..)
+, IfBoolean(..)
+, Bool(..)
 ) where
 
 import Prelude as Base
@@ -36,8 +38,8 @@ instance IfBoolean Base.Bool where
   toBool = id
   
 -- | Otherwise 
-otherwise :: Boolean b => b
-otherwise = true
+otherwise :: Base.Bool
+otherwise = True
 
 instance Boolean b => GenericClass b where
   type DefaultImpl b = Bool

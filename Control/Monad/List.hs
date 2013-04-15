@@ -1,4 +1,6 @@
 {-# LANGUAGE NoImplicitPrelude #-}
+-- | The list monad is a calculation that produces the cross
+-- product for all the possible combinations.
 module Classy.Control.Monad.List () where
 
 import Classy.Base
