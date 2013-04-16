@@ -3,6 +3,7 @@
 module Classy.Control.Monad where
 
 import Classy.Base
+import Classy.Data.BasicClasses
 import Classy.Data.Classes
 import Classy.Control.Function
 

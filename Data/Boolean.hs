@@ -2,7 +2,6 @@
 module Classy.Data.Boolean 
 ( Boolean(..)
 , IfBoolean(..)
-, Bool(..)
 ) where
 
 import Prelude as Base
@@ -21,10 +20,10 @@ class Boolean b where
 class Boolean b => IfBoolean b where
   if' :: b -> a -> a -> a
   if' b x y = if toBool b then x else y
-  toBool :: b -> Base.Bool
-  toBool b = if' b Base.True Base.False
+  toBool :: b -> Bool
+  toBool b = if' b True Base.False
 
-instance Boolean Base.Bool where
+instance Boolean Bool where
   true = True
   false = False
   not True = False

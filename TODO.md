@@ -5,6 +5,7 @@ Ideas:
 
 Questions:
   - Arrows or tuple operations?
+  - Runnable or Function instances?
   
 Design:
   - Debug module

@@ -1,8 +1,8 @@
 {-# LANGUAGE NoImplicitPrelude, TypeFamilies #-}
 module Classy.Base 
 ( module Classy.Base
-, id, const, flip, String, Ord, Show, Read
-, error, ($)
+, id, const, flip, String
+, error, ($), Bool(..)
 ) where
 
 import Prelude
