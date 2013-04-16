@@ -34,6 +34,8 @@ Container classes:
   - class Constructable c where ConsElem c, cons
     - repeate, iterate, replicate
     - Traversable: take
+    - fromList
+  - class Serializeable a s where serialize :: a -> s
     
 Datatype classes:
   - range, datatype (Traversable, Set, ...)
@@ -49,4 +51,5 @@ Generic classes:
 Generalizing:
   - generalizing the given Monad instances for []
   - generalizing of id, const, flip
+
 

@@ -1,4 +1,4 @@
-{-# LANGUAGE NoImplicitPrelude, TypeFamilies, MultiParamTypeClasses, FlexibleInstances #-}
+{-# LANGUAGE NoImplicitPrelude, OverlappingInstances, TypeFamilies, MultiParamTypeClasses, FlexibleInstances #-}
 module Classy.Data.List where
 
 import Classy.Base

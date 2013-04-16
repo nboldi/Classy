@@ -2,7 +2,8 @@
 module Classy.Base 
 ( module Classy.Base
 , id, const, flip, String
-, error, ($), Bool(..)
+, undefined, error, ($), Bool(..)
+, seq
 ) where
 
 import Prelude
@@ -12,3 +13,6 @@ import Debug.Trace
 class GenericClass c where
   type DefaultImpl c :: *
   generalize :: DefaultImpl c -> c
+  
+strict :: a -> a
+strict a = seq a a

@@ -16,7 +16,7 @@ import Classy.Base
 class Monoid m where
   empty :: m
   (+) :: m -> m -> m
-
+  
 -- | Something that has a structure that can be mapped.
 -- Functor laws:
 -- Identity:
@@ -68,5 +68,4 @@ class (Functor p) => Applicative p where
   -- | Function lifting when the result is independent of the second. 
   (<<)   :: p b -> p a -> p b       
   pa << pb = flip (const id) <$> pa <*> pb
-  
-class Num m where
+
